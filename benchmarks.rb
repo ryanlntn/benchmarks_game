@@ -17,4 +17,13 @@ benchmarks.each do |benchmark|
   end
 end
 
-p languages
+languages.each do |language, stats|
+  stats[:size] = stats[:size] / stats[:total]
+  stats[:elapsed] = stats[:elapsed] / stats[:total]
+  stats[:score] = (stats[:size] ** 2 + stats[:elapsed] ** 2) ** 0.5 # Low score wins
+end
+
+puts "Language\t\tScore"
+languages.each do |language, stats|
+  puts "#{language}\t\t#{stats[:score]}"
+end
