@@ -23,7 +23,7 @@ languages.each do |language, stats|
   stats[:score] = (stats[:size] ** 2 + stats[:elapsed] ** 2) ** 0.5 # Low score wins
 end
 
-puts "Language\t\tScore"
-languages.each do |language, stats|
-  puts "#{language}\t\t#{stats[:score]}"
+puts "Language".ljust(30) + "Size".ljust(10) + "Elapsed".ljust(20) + "Score".ljust(20)
+languages.sort_by{ |k,v| v[:score] }.each do |language, stats|
+  puts "#{language.ljust(30)}#{stats[:size].to_s.ljust(10)}#{stats[:elapsed].round.to_s.ljust(20)}#{stats[:score].round.to_s.ljust(20)}"
 end
